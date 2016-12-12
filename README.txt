@@ -1,41 +1,22 @@
-=== Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
+=== Mass Export/Edit/Import Post Types with Google spreadsheet ===
+Contributors: @wisewords
 Donate link: http://veebiehitus.ee
-Tags: comments, spam
+Tags: Google Spreadsheet,import,export,edit,post types
 Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Tested up to: 4.6
+Stable tag: 4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Mass edit/import/export plugin based on google spreadsheet.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+EEIP - Mass Export/Edit/Import Post Types with Google spreadsheet
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
-
-A few notes about the sections above:
-
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+Wordpress plugin for mass data managing.
+With this plugin you can export and edit post data in google spreadsheet.
+Plugin works with Custom post types and Wordpress Core Post types.
 
 == Installation ==
 
@@ -43,19 +24,37 @@ This section describes how to install the plugin and get it working.
 
 e.g.
 
-1. Upload `eeip.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+1. Upload `/Mass-Export-Edit-Import-Post-Types-with-Google spreadsheet/` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Connect plugin with your google account under the ‘Settings’ menu is ‘EEIP’ menu item.
+
+== Connecting Google Account == 
+
+1. Go to https://console.developers.google.com/apis/ and login
+2. Create project if needed
+3. Activate Google Drive API by Searching for ‘Google Drive API’ 
+4. Activate Google Sheets API by Searching for ‘Google Sheets API’
+5. Afther activating api’s go to : https://console.developers.google.com/apis/credentials and click ‘Create credentials’, next select ‘OAuth client ID’.
+6. Creating ‘OAuth client ID’ Step By Step
+6.1. Application type -> Web application
+6.2. Enter Name -> Name
+6.3. Authorized JavaScript origins -> http://domain.com
+6.4. Authorized redirect URIs -> http://domain.com/wp-admin/options-general.php?page=eeip
+6.5. Submit form and save Web application Name,Client ID and Client secret for later use.
+7. Go to link :http://domain.com/wp-admin/options-general.php?page=eeip
+		 and Enter Web application Name,Your Google Drive Email,Client ID and Client secret 
+
+				Click save and plugin is ready for use.
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Can i edit Custom Post Types with EEIP? =
 
-An answer to that question.
+	Yes you can.
 
-= What about foo bar? =
+= Can i import posts with EEIP? =
 
-Answer to foo bar dilemma.
+Yes you can, but you have to buy Pro version on link :
 
 == Screenshots ==
 
@@ -71,44 +70,5 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 * A change since the previous version.
 * Another change.
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
 
-== Upgrade Notice ==
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
