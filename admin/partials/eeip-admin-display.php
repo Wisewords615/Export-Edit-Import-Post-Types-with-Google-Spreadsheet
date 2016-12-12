@@ -1,8 +1,4 @@
 <?php
-
-/*define('SCOPES', implode(' ', array(
-  Google_Service_Drive::DRIVE, Google_Service_Sheets::SPREADSHEETS )
-));*/
 /**
  * Provide a admin area view for the plugin
  *
@@ -22,16 +18,11 @@
  $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'].'?page=eeip';
 ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
 
 
 <?php
 
-/**
-*
-* admin/partials/wp-cbf-admin-display.php - Don't add this comment
-*
-**/
+
 if(isset($_GET['type']) && strlen(get_option('gfile')) > 1){
   function generateAlphabet($na) {
          $sa = "";
@@ -68,9 +59,7 @@ if(isset($_GET['type']) && strlen(get_option('gfile')) > 1){
        $tokens = get_option('gtoken');
        $client->setAccessToken($tokens);
        $client->refreshToken($tokens["refresh_token"]);
-       //$client->setAccessToken();
        $service = new Google_Service_Sheets($client);
-       //echo var_dump($service);
        $spreadsheetId = get_option('gfile');
     $ranges = array(
       'A:'.$alphabet[intval($_GET['update_cols'])]
@@ -112,10 +101,8 @@ if(isset($_GET['type']) && strlen(get_option('gfile')) > 1){
                 $post_data[$value13] =  $output_post[$key];
               }
             }
-            //kui id on olemas siis update, kui id ei ole siis loome postituse.
             if(intval($value[0]) > 0 && $y == 0){
               $id = intval($value[0]);
-            //  var_dump($post_data);
               wp_update_post( $post_data ,$error);
               $y++;
                continue;
@@ -152,7 +139,6 @@ if(isset($_GET['type']) && strlen(get_option('gfile')) > 1){
           $y++;
           continue;
         }
-        //$content[] = get_post_meta( $content[0], $value, true );
       }
       $x++;
     }
@@ -346,43 +332,9 @@ require_once dirname(__FILE__).'/google-api-php-client-2.1.0_PHP54/vendor/autolo
    $tokens = get_option('gtoken');
    $client->setAccessToken($tokens);
    $client->refreshToken($tokens["refresh_token"]);
-   //$client->setAccessToken();
    $service = new Google_Service_Sheets($client);
-   //echo var_dump($service);
    $spreadsheetId = get_option('gfile');
-  // echo var_dump($service->spreadsheets_values->get($spreadsheetId, $range));
-  //  $response = $service->spreadsheets_values->get($spreadsheetId, $range);
-//scrape off headers that are Array
 $header1 = get_foods_meta_keys();
-/*$args = array(
-    'post_type' => $_GET['type'],
-    'posts_per_page' => -1,
-    'post_status' => 'any',
-    'numberposts' => -1
-    );
-$cpts = new WP_Query($args);
-var_dump($cpts);
-    $header1 = get_foods_meta_keys();
-if($cpts->have_posts()) : while($cpts->have_posts() ) : $cpts->the_post();
-    $content = array();
-    $content[] = get_the_ID();
-    //$content[] = get_the_title( $content[0] );
-    //$content[] = get_post_field('post_content', $content[0]);
-    //$content[] = get_post_field( 'post_name', $content[0] );
-    foreach ($header1 as &$value) {
-      if(is_array(get_post_meta( $content[0], $value, true ))){
-        if(in_array($value, $header1)) {
-        //    unset($header1[$key]);
-        }
-      }else{
-        //$content[] = get_post_meta( $content[0], $value, true );
-      }
-    }
-endwhile; endif;
-
-*/
-  //  $values = $response->getValues();
-
     $args = array(
         'post_type' => $_GET['type'],
         'posts_per_page' => -1,
@@ -390,7 +342,6 @@ endwhile; endif;
         'numberposts' => -1
         );
     $cpts = new WP_Query($args);
-//var_dump($cpts);
 $system = 0;
 $x = 0;
 $types = array();
@@ -427,7 +378,6 @@ $types = array();
             $types2,
         );
         $values = array_merge($values, $values1);
-//var_dump($values);
             $alphabet = Array();
               for ($na = 0; $na < 125; $na++) {
               $alphabet[]=generateAlphabet($na);
@@ -438,7 +388,6 @@ $types = array();
           'range' => $range,
           'values' => $values
         ));
-        // Additional ranges to update ...
 
         $body = new Google_Service_Sheets_BatchUpdateValuesRequest(array(
           'valueInputOption' => 'USER_ENTERED',
@@ -449,19 +398,10 @@ $types = array();
             'range' => $range,
           )
         );
-        //var_dump($body);
         $result1 = $service->spreadsheets_values->clear($spreadsheetId,$range, $body2);
         $result = $service->spreadsheets_values->batchUpdate($spreadsheetId, $body);
-         /**
-       * Initialize the service request factory
-       */
-    /*   use Google\Spreadsheet\DefaultServiceRequest;
-       use Google\Spreadsheet\ServiceRequestFactory;
-       use Google\Spreadsheet\SpreadsheetService;*/
 
     ?>
-          <!-- remove some meta and generators from the <head> -->
-          <!-- load jQuery from CDN -->
           <a style="float:right;font-size:16px;font-weight:bold; margin-bottom:10px;" class="myButton" href="<?php echo $redirect_uri.'&update_cols='.count($header).'&sys_num='.$system.'&type='.$_GET['type']; ?>">Save changes to Database</a>
 
           <iframe width="100%" height="600px" src="https://docs.google.com/spreadsheets/d/<?php echo $file_id; ?>/edit?widget=true&amp;headers=false"></iframe>
@@ -472,16 +412,13 @@ $types = array();
   </div><?php
 }else{
 
-echo 'lol1';
        if (isset($_GET['code']) && strlen(get_option('gfile')) < 1) {
-         echo 'lol2';
           $options = get_option($this->plugin_name);
           $Client_id = $options['Client_id'];
           $Client_secret = $options['Client_secret'];
           $Email = $options['Email'];
           $AppName = $options['AppName'];
               if(strlen($Client_secret) > 1 && strlen($Client_id) > 1 && strlen($AppName) > 1 && strlen($_GET['code']) > 1 && strlen($Email) > 1 ){
-                 echo 'lol3';
                   require_once dirname(__FILE__).'/google-api-php-client-2.1.0_PHP54/vendor/autoload.php';
                   $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'].'?page=eeip';
                   $client = new Google_Client();
@@ -492,9 +429,6 @@ echo 'lol1';
                   $client->setSubject($Email);
                   $client->setAccessType('offline');
                   if(strlen(get_option('gtoken')['access_token']) < 1){
-
-
-                    //$client->authenticate($_GET['code']);
                     $client->authenticate($_GET['code']);
                     update_option('gtoken',$client->getAccessToken());
                   }else{
@@ -605,6 +539,18 @@ echo 'lol1';
       </nav>
       <!-- menu end -->
       <?php endif; ?>
+      <script>
+          jQuery(function(){
+            // bind change event to select
+            jQuery('#blue').on('change', function () {
+                var url = jQuery(this).val(); // get selected value
+                if (url) { // require a URL
+                    window.location = url; // redirect
+                }
+                return false;
+            });
+          });
+    </script>
  <?php settings_fields($this->plugin_name);
 $options = get_option($this->plugin_name);
 $Client_id = $options['Client_id'];
@@ -633,8 +579,6 @@ if(strlen($Email) > 1 && strlen($Client_secret) > 1 && strlen($Client_id) > 1 &&
   header('location:'.$authUrl);
 }
   ?>
-        <!-- remove some meta and generators from the <head> -->
-        <!-- load jQuery from CDN -->
         <?php if(strlen(get_option('gfile')) > 1): ?>
         <fieldset>
                     <fieldset>
