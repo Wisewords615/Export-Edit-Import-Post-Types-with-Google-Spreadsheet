@@ -1,6 +1,6 @@
 === Mass Export/Edit/Import Post Types with Google spreadsheet ===
 Contributors: @wisewords
-Donate link: http://veebiehitus.ee
+Donate link: https://donorbox.org/eeip
 Tags: Google Spreadsheet,import,export,edit,post types
 Requires at least: 4.4.0
 Tested up to: 4.6
