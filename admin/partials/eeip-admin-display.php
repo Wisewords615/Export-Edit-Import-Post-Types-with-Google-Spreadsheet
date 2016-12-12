@@ -64,12 +64,10 @@ if(isset($_GET['type']) && strlen(get_option('gfile')) > 1){
     $ranges = array(
       'A:'.$alphabet[intval($_GET['update_cols'])]
     );
-    //var_dump($ranges);
     $params = array(
       'ranges' => $ranges
     );
     $result = $service->spreadsheets_values->batchGet($spreadsheetId, $params);
-    var_dump($result[0]['values']);
     $x = 0;
     $updated_values = 0;
     $posts_added = 0;
@@ -106,11 +104,9 @@ if(isset($_GET['type']) && strlen(get_option('gfile')) > 1){
               wp_update_post( $post_data ,$error);
               $y++;
                continue;
-              //var_dump($error);
             }elseif(intval($value[0])  == 0 && $y == 0){
               $post_data['post_type'] = $_GET['type'];
               $id = wp_insert_post($post_data);
-              //var_dump($id);
               $posts_added++;
               $y++;
               continue;
@@ -438,8 +434,6 @@ $types = array();
                   $fileMetadata = new Google_Service_Drive_DriveFile(array(
                   'name' => $AppName.' Post Type export',
                   'mimeType' => 'application/vnd.google-apps.spreadsheet'));
-                  var_dump($driveService->files->create($fileMetadata, array(
-                  'fields' => 'id')));
                   $file = $driveService->files->create($fileMetadata, array(
                   'fields' => 'id'));
                   $permission = new Google_Service_Drive_Permission();
