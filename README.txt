@@ -2,7 +2,7 @@
 Contributors: @wisewords
 Donate link: http://veebiehitus.ee
 Tags: Google Spreadsheet,import,export,edit,post types
-Requires at least: 3.0.1
+Requires at least: 4.4.0
 Tested up to: 4.6
 Stable tag: 4.6
 License: GPLv2 or later
