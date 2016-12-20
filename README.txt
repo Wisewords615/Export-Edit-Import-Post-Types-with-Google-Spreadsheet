@@ -55,7 +55,7 @@ e.g.
 
 == Screenshots ==
 
-![alt tag](https://s30.postimg.org/mqefdja01/Screen_Shot_2016_12_12_at_23_13_31.png);
+<img src="https://s30.postimg.org/mqefdja01/Screen_Shot_2016_12_12_at_23_13_31.png" />
 
 == Changelog ==
 
