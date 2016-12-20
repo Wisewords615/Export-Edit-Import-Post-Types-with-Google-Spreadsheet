@@ -10,6 +10,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Mass edit/import/export plugin based on google spreadsheet.
 
+<img src="https://s30.postimg.org/mqefdja01/Screen_Shot_2016_12_12_at_23_13_31.png" />
+
 == Description ==
 
 EEIP - Mass Export/Edit/Import Post Types with Google spreadsheet
@@ -52,10 +54,6 @@ e.g.
 
 	Yes you can.
 
-
-== Screenshots ==
-
-<img src="https://s30.postimg.org/mqefdja01/Screen_Shot_2016_12_12_at_23_13_31.png" />
 
 == Changelog ==
 
