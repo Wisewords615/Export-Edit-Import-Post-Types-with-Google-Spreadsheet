@@ -1,14 +1,14 @@
-=== Mass Export/Edit/Import Post Types with Google spreadsheet ===
-Contributors: @wisewords
-Donate link: https://donorbox.org/eeip
-Tags: Google Spreadsheet,import,export,edit,post types
-Requires at least: 4.4.0
-Tested up to: 4.6
-Stable tag: 4.6
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+=== Mass Export/Edit/Import Post Types with Google spreadsheet ===<br>
+Contributors: @wisewords<br>
+Donate link: https://donorbox.org/eeip<br>
+Tags: Google Spreadsheet,import,export,edit,post types<br>
+Requires at least: 4.4.0<br>
+Tested up to: 4.6<br>
+Stable tag: 4.6<br>
+License: GPLv2 or later<br>
+License URI: http://www.gnu.org/licenses/gpl-2.0.html<br>
 
-Mass edit/import/export plugin based on google spreadsheet.
+Mass edit/import/export plugin based on google spreadsheet.<br>
 
 <img src="https://s30.postimg.org/mqefdja01/Screen_Shot_2016_12_12_at_23_13_31.png" />
 
