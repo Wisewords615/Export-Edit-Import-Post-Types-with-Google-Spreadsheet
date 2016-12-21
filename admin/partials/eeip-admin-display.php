@@ -39,7 +39,7 @@ if(isset($_GET['type']) && strlen(get_option('gfile')) > 1){
      }
   if(isset($_GET['update_cols']) && isset($_GET['sys_num'])){
 
-    require_once dirname(__FILE__).'/google-api-php-client-2.1.0_PHP54/vendor/autoload.php';
+    require_once dirname(__FILE__).'/google-api-php-client/vendor/autoload.php';
         settings_fields($this->plugin_name);
        $options = get_option($this->plugin_name);
        $Client_id = $options['Client_id'];
@@ -307,7 +307,7 @@ if(isset($_GET['type']) && strlen(get_option('gfile')) > 1){
       }
 
 
-require_once dirname(__FILE__).'/google-api-php-client-2.1.0_PHP54/vendor/autoload.php';
+require_once dirname(__FILE__).'/google-api-php-client/vendor/autoload.php';
     settings_fields($this->plugin_name);
    $options = get_option($this->plugin_name);
    $Client_id = $options['Client_id'];
@@ -415,7 +415,7 @@ $types = array();
           $Email = $options['Email'];
           $AppName = $options['AppName'];
               if(strlen($Client_secret) > 1 && strlen($Client_id) > 1 && strlen($AppName) > 1 && strlen($_GET['code']) > 1 && strlen($Email) > 1 ){
-                  require_once dirname(__FILE__).'/google-api-php-client-2.1.0_PHP54/vendor/autoload.php';
+                  require_once dirname(__FILE__).'/google-api-php-client/vendor/autoload.php';
                   $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'].'?page=eeip';
                   $client = new Google_Client();
                   $client->setApplicationName($AppName);
@@ -447,13 +447,8 @@ $types = array();
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<div class="wrap">
-
-    <h2><?php echo esc_html(get_admin_page_title()); ?></h2>
-
-
-
-    <form method="post" name="cleanup_options" action="options.php">
+<div style="text-align:center;" class="wrap">
+   <form method="post" name="cleanup_options" action="options.php">
       <?php if(strlen(get_option('gtoken')["refresh_token"]) > 1 && strlen(get_option('gfile')) > 1): ?>
         <!-- menu start -->
       <br>
@@ -514,9 +509,9 @@ $types = array();
         outline:0;
       }
       </style>
-      <nav style="margin-bottom:10px;display:inline-block;">
+      <nav style="float:left;">
           <select id="blue" style="" >
-            <option selected>Select Post Type</option>
+            <option selected><?php _e('Select Post Type', $this->plugin_name); ?></option>
               <?php
               $args = array(
               );
@@ -531,8 +526,16 @@ $types = array();
             <?php endforeach; ?>
           </select>
       </nav>
+      <br>
+      <br>
       <!-- menu end -->
       <?php endif; ?>
+    <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+
+
+
+
+
       <script>
           jQuery(function(){
             // bind change event to select
@@ -553,7 +556,7 @@ $Email = $options['Email'];
 $AppName = $options['AppName'];
 
 if(strlen($Email) > 1 && strlen($Client_secret) > 1 && strlen($Client_id) > 1 && strlen($AppName) > 1 && !isset($_GET['code']) && strlen(get_option('gtoken')['access_token']) < 1){
-  require_once dirname(__FILE__).'/google-api-php-client-2.1.0_PHP54/vendor/autoload.php';
+  require_once dirname(__FILE__).'/google-api-php-client/vendor/autoload.php';
 
   $client = new Google_Client();
   $client->setApplicationName($AppName);
@@ -568,7 +571,7 @@ if(strlen($Email) > 1 && strlen($Client_secret) > 1 && strlen($Client_id) > 1 &&
   $client->setRedirectUri($redirect_uri);
   $authUrl = $client->createAuthUrl();
   ?>
-  <a href="<?php echo $authUrl; ?>">Activate Google Drive Account!</a>
+  <a href="<?php echo $authUrl; ?>"><?php _e('Activate Google Drive Account!', $this->plugin_name); ?></a>
   <?php
   header('location:'.$authUrl);
 }
@@ -576,12 +579,14 @@ if(strlen($Email) > 1 && strlen($Client_secret) > 1 && strlen($Client_id) > 1 &&
         <?php if(strlen(get_option('gfile')) > 1): ?>
         <fieldset>
                     <fieldset>
-                        <p style="color:green;">Plugin has been activated and file has been created. File link : <a target="_blank" href="https://docs.google.com/spreadsheets/d/<?php echo get_option('gfile'); ?>/edit?widget=true&amp;headers=false">Google Spreadsheet</a></p>
+                        <p style="color:green;"><?php _e('Plugin has been activated and file has been created. File link : ', $this->plugin_name); ?><a target="_blank" href="https://docs.google.com/spreadsheets/d/<?php echo get_option('gfile'); ?>/edit?widget=true&amp;headers=false">Google Spreadsheet</a></p>
                     </fieldset>
                     <?php
                     if(strlen(get_option('gfile')) > 1 && strlen(get_option('gtoken')['access_token']) > 1){
                       $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'].'?page=eeip&refresh_token=1';
-                        echo '<a href="'.$redirect_uri.'" >Refresh Auth Token and create new file</a>';
+                        echo '<a href="'.$redirect_uri.'" >';
+                        echo _e('Refresh Auth Token and create new file', $this->plugin_name);
+                        echo '</a>';
                     }
 
                      ?>
@@ -589,33 +594,33 @@ if(strlen($Email) > 1 && strlen($Client_secret) > 1 && strlen($Client_id) > 1 &&
       <?php endif; ?>
         <fieldset>
                     <fieldset>
-                        <p>Add your Google Developers Console Application Name : </p>
-                        <legend class="screen-reader-text"><span><?php _e('Choose your prefered cdn provider', $this->plugin_name); ?></span></legend>
+                        <p><?php _e('Add your Google Developers Console Application Name : ', $this->plugin_name); ?></p>
                         <input type="text" class="regular-text" id="<?php echo $this->plugin_name; ?>-AppName" name="<?php echo $this->plugin_name; ?>[AppName]" value="<?php if(!empty($AppName)) echo $AppName; ?>"/>
                     </fieldset>
         </fieldset>
         <fieldset>
                     <fieldset>
-                        <p>Add your Google Drive Email : </p>
-                        <legend class="screen-reader-text"><span><?php _e('Choose your prefered cdn provider', $this->plugin_name); ?></span></legend>
+                        <p><?php _e('Add your Google Drive Email : ', $this->plugin_name); ?></p>
                         <input type="email" class="regular-text" id="<?php echo $this->plugin_name; ?>-Email" name="<?php echo $this->plugin_name; ?>[Email]" value="<?php if(!empty($Email)) echo $Email; ?>"/>
                     </fieldset>
         </fieldset>
         <fieldset>
                     <fieldset>
-                        <p>Add your Google API Client ID : </p>
-                        <legend class="screen-reader-text"><span><?php _e('Choose your prefered cdn provider', $this->plugin_name); ?></span></legend>
+                        <p><?php _e('Add your Google API Client ID : ', $this->plugin_name); ?></p>
                         <input type="text" class="regular-text" id="<?php echo $this->plugin_name; ?>-Client_id" name="<?php echo $this->plugin_name; ?>[Client_id]" value="<?php if(!empty($Client_id)) echo $Client_id; ?>"/>
                     </fieldset>
         </fieldset>
         <fieldset>
                     <fieldset>
-                        <p>Add your Google API Client secret : </p>
-                        <legend class="screen-reader-text"><span><?php _e('Choose your prefered cdn provider', $this->plugin_name); ?></span></legend>
+                        <p><?php _e('Add your Google API Client secret : ', $this->plugin_name); ?></p>
                         <input type="text" class="regular-text" id="<?php echo $this->plugin_name; ?>-Client_secret" name="<?php echo $this->plugin_name; ?>[Client_secret]" value="<?php if(!empty($Client_secret)) echo $Client_secret; ?>"/>
                     </fieldset>
         </fieldset>
-
+    <style>
+    .submit{
+        text-align:center !important;
+        }
+    </style>
         <?php submit_button('Save all changes', 'primary','submit', TRUE); ?>
 
 
