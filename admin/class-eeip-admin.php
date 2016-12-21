@@ -116,7 +116,7 @@ public function add_plugin_admin_menu() {
      *        Administration Menus: http://codex.wordpress.org/Administration_Menus
      *
      */
-    add_options_page( 'Export/Edit/Import Post-types with Google spreadsheet Setup', 'EEIP', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page')
+    add_options_page( 'EEIP Setup', 'EEIP', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page')
     );
 }
 
