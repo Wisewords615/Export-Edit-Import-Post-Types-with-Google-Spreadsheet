@@ -32,18 +32,15 @@ e.g.
 
 == Connecting Google Account == 
 
-1. Go to https://console.developers.google.com/apis/ and login
-2. Create project if needed
-3. Activate Google Drive API by Searching for ‘Google Drive API’ 
-4. Activate Google Sheets API by Searching for ‘Google Sheets API’
-5. Afther activating api’s go to : https://console.developers.google.com/apis/credentials and click ‘Create credentials’, next select ‘OAuth client ID’.
-6. Creating ‘OAuth client ID’ Step By Step
-6.1. Application type -> Web application
-6.2. Enter Name -> Name
-6.3. Authorized JavaScript origins -> http://domain.com
-6.4. Authorized redirect URIs -> http://domain.com/wp-admin/options-general.php?page=eeip
-6.5. Submit form and save Web application Name,Client ID and Client secret for later use.
-7. Go to link :http://domain.com/wp-admin/options-general.php?page=eeip
+1. Go to https://console.developers.google.com/flows/enableapi?apiid=drive,sheets.googleapis.com and login
+2. Afther activating api’s go to : https://console.developers.google.com/apis/credentials and click ‘Create credentials’, next select ‘OAuth client ID’.
+3. Creating ‘OAuth client ID’ Step By Step
+3.1. Application type -> Web application
+3.2. Enter Name -> Name
+3.3. Authorized JavaScript origins -> http://domain.com
+3.4. Authorized redirect URIs -> http://domain.com/wp-admin/options-general.php?page=eeip
+3.5. Submit form and save Web application Name,Client ID and Client secret for later use.
+4. Go to link :http://domain.com/wp-admin/options-general.php?page=eeip
 		 and Enter Web application Name,Your Google Drive Email,Client ID and Client secret 
 
 				Click save and plugin is ready for use.
